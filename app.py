@@ -39,9 +39,13 @@ def get_query_result(query:str) -> list:
 def search():
     if request.method == 'POST':
         query = request.form.get("search")
-        qry_result = get_query_result(query)
-        print(qry_result)
-        return render_template("search.html", data=qry_result)
+        titlecased_qry = query.title()
+        qry_result = get_query_result(titlecased_qry)
+        if qry_result:
+            return render_template("search.html", data=qry_result)
+        else:
+            msg = f"sorry no resuf found for '{query}'"
+            return render_template("search.html", msg=msg)
     return render_template("search.html")
 
 

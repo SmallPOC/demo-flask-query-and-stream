@@ -51,10 +51,14 @@ form.example::after {
   <input type="text" placeholder="Search artist.." name="search">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
+<br>
 
-{% for i in data %}
-  <p> {{i}} </p>
-{% endfor %}
-
+{% if msg %}
+<p style="display:inline"> {{msg}} </p><br>
+{% else %}
+  {% for i in data %}
+    <p style="display:inline"> {{i}} </p><br>
+  {% endfor %}
+{% endif %}
 
 </body>
