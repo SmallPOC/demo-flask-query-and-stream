@@ -47,8 +47,11 @@ form.example::after {
 <body>
 
 
-<form class="example" action="#"  method="post" style="margin:auto;max-width:300px">
-  <input type="text" placeholder="Search artist.." name="search">
+<form class="example" action="#"  method="post" style="margin:auto;max-width:400px">
+  <input style="display:inline" type="text" placeholder="artist" name="artist">
+  <!-- <input style="display:inline" type="text" placeholder="album" name="album">
+  <input style="display:inline" type="text" placeholder="title" name="title"> -->
+  
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 <br>
@@ -57,8 +60,22 @@ form.example::after {
 <p style="display:inline"> {{msg}} </p><br>
 {% else %}
   {% for i in data %}
-    <p style="display:inline"> {{i}} </p><br>
-  {% endfor %}
-{% endif %}
+
+  <a href='#' onclick='clickfunc(this)'>{{ i }}</a>  <br>
+   {% endfor %}
+{% endif %} 
+
+
+<!-- <a href='#' onclick='clickfunc(this)'>link</a> -->
+
+<script>
+  clickfunc = function(link) {
+  var t = link.innerText || link.textContent;
+  alert(t);
+}
+
+</script>
+
+
 
 </body>

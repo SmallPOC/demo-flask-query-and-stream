@@ -29,16 +29,17 @@ def get_query_result(query:str) -> list:
     q = Songs.query.filter_by(artist=query).all()
     result = []
     for i in q:
-        ret = f"{i.artist} - {i.album} - {i.title}"
+        title = " ".join(i.title.split()[:-1])
+        print(title, type(title))
+        ret = f"{i.artist}  -  {i.album}  -  {title}"
         result.append(ret)
-    return result
-        
+    return result      
 
 
 @app.route("/", methods=["GET", "POST"])
 def search():
     if request.method == 'POST':
-        query = request.form.get("search")
+        query = request.form.get("artist")
         titlecased_qry = query.title()
         qry_result = get_query_result(titlecased_qry)
         if qry_result:
@@ -47,6 +48,13 @@ def search():
             msg = f"sorry no resuf found for '{query}'"
             return render_template("search.html", msg=msg)
     return render_template("search.html")
+
+
+
+@app.route("/play/<artist>/<album>/<title>")
+def play_song(artist, album, title):
+    return f"playing.. {artist} - {album} - {title}"
+
 
 
 if __name__=="__main__":
