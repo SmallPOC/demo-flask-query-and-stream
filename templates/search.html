@@ -60,19 +60,60 @@ form.example::after {
 <p style="display:inline"> {{msg}} </p><br>
 {% else %}
   {% for i in data %}
+  <!-- <a href='{{url_for("play_song", artist="???", album="???", title="???" )}}' onclick='clickfunc(link)'>{{ i }}</a>  <br> -->
+  <!-- here is the issue, i dont know how to get the variable from <a href>link</a> for the url function -->
+  <a href='#' onclick='clickfunc(link)'>{{ i }}</a>  <br> 
 
-  <a href='#' onclick='clickfunc(this)'>{{ i }}</a>  <br>
    {% endfor %}
 {% endif %} 
 
 
-<!-- <a href='#' onclick='clickfunc(this)'>link</a> -->
-
 <script>
-  clickfunc = function(link) {
+
+  function clickfunc(link) {
   var t = link.innerText || link.textContent;
-  alert(t);
+  var splitted = t.split(" - ")
+  artist = splitted[0]
+  album = splitted[1]
+  title = splitted[2]
+  return [artist, album, title];
 }
+
+
+function get_artist(link) {
+  var t = link.innerText || link.textContent;
+  var splitted = t.split(" - ");
+  return splitted[0]
+}
+
+function get_album(link) {
+  var t = link.innerText || link.textContent;
+  var splitted = t.split(" - ");
+  return splitted[1]
+}
+
+function get_title(link) {
+  var t = link.innerText || link.textContent;
+  var splitted = t.split(" - ");
+  return splitted[2]
+}
+
+
+  // var val = clickfunc(this);
+  // console.log(val[0]);
+
+
+
+  // function getvalues(){
+  //   return [13, 20]
+  // }
+
+  // var values = getvalues()
+  // // first = values[0];
+  // // second = values[1];
+  // console.log(values[0]);
+  // console.log(values[1]);
+
 
 </script>
 

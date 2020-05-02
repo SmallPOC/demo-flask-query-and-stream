@@ -11,6 +11,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///playlist.db'
 app.config["SQLALCHEMY_ECHO"] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+
 class MemberDB(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
@@ -42,6 +43,7 @@ def search():
         query = request.form.get("artist")
         titlecased_qry = query.title()
         qry_result = get_query_result(titlecased_qry)
+        print(qry_result)
         if qry_result:
             return render_template("search.html", data=qry_result)
         else:
