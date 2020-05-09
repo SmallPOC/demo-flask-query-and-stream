@@ -45,17 +45,11 @@ form.example::after {
 </style>
 </head>
 <body>
-
-
 <form class="example" action="#"  method="post" style="margin:auto;max-width:400px">
   <input style="display:inline" type="text" placeholder="artist" name="artist">
-  <!-- <input style="display:inline" type="text" placeholder="album" name="album">
-  <input style="display:inline" type="text" placeholder="title" name="title"> -->
-
-  <button type="submit"><i class="fa fa-search"></i>Search</button>
+  <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 <br>
-
 {% if msg %}
 <p style="display:inline"> {{msg}} </p><br>
 {% else %}
@@ -63,6 +57,4 @@ form.example::after {
   <a href="{{ url_for('play', id = song.id)}}"><p>{{song}}</p></a> 
   {% endfor %}
 {% endif %} 
-
-
 </body>
